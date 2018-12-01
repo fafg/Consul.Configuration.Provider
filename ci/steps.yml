@@ -1,0 +1,15 @@
+steps:
+- script: make build
+  displayName: "Build"
+
+- script: make test
+  displayName: "Test"
+
+- script: make version
+  displayName: Versioning
+
+- script: sudo apt install nuget && make nuget-pack
+  displayName: Nuget Pack
+
+- script: make nugetApiKey=$(nugetApiKey) nuget-push
+  displayName: Nuget Push

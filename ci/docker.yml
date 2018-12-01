@@ -1,5 +1,0 @@
-steps:
-- script: make build
-  displayName: "Build"
-- script: make test
-  displayName: "Test"

@@ -16,6 +16,6 @@ jobs:
   pool:
     vmImage: 'Ubuntu 16.04'
   steps:
-  - template: ci/docker.yml
+  - template: ci/steps.yml
     parameters:
       imageName: 'microsoft/dotnet:2.1-sdk'
