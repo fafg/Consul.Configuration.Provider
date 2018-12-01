@@ -1,0 +1,15 @@
+resources:
+- repo: self
+
+trigger:
+- master
+
+jobs:
+- job: Linux_Job_Pipeline
+  displayName: 'Linux (amd64; Trusty; GCC; OpenSSL)'
+  pool:
+    vmImage: 'Ubuntu 16.04'
+  steps:
+  - template: ci/docker.yml
+    parameters:
+      imageName: 'microsoft/dotnet:latest'
