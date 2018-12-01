@@ -1,22 +1,5 @@
-- task: docker@0
-  displayName: Build
-  inputs:
-    action: 'Run an image'
-    imageName: ${{ parameters.imageName }}
-    volumes: |
-     $(Build.SourcesDirectory):./
-     $(Build.BinariesDirectory):/build
-    workDir: '/build'
-    containerCommand: 'dotnet build -c Release Consul.Configuration.Provider.sln'
-    detached: false
-- task: docker@0
-  displayName: Test
-  inputs:
-    action: 'Run an image'
-    imageName: ${{ parameters.imageName }}
-    volumes: |
-     $(Build.SourcesDirectory):/src
-     $(Build.BinariesDirectory):/build
-    workDir: '/build'
-    containerCommand: 'dotnet test --no-restore ./tests/Consul.Configuration.Provider.Tests.csproj'
-    detached: false
+steps:
+- script: make build
+  displayName: "Build"
+- script: make test
+  displayName: "Test"

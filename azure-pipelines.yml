@@ -4,12 +4,18 @@ resources:
 trigger:
 - master
 
+variables:
+  major: 0
+  minor: 1
+  patch: $(git log --pretty=format:'' | wc -l | sed 's/[ \t]//g')
+  rev: rev-$(git rev-parse --short HEAD)
+
 jobs:
 - job: Linux_Job_Pipeline
-  displayName: 'Linux (amd64; Trusty; GCC; OpenSSL)'
+  displayName: 'Linux (amd64; Trusty; Make; GCC; OpenSSL)'
   pool:
     vmImage: 'Ubuntu 16.04'
   steps:
   - template: ci/docker.yml
     parameters:
-      imageName: 'microsoft/dotnet:latest'
+      imageName: 'microsoft/dotnet:2.1-sdk'
