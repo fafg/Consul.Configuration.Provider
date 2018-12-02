@@ -13,7 +13,7 @@ test: build
 	dotnet test --no-restore tests/Consul.Configuration.Provider.Tests/Consul.Configuration.Provider.Tests.csproj
 
 coverity-scan:
-ifeq ($(coverity-scan),'true')
+ifeq ($(coverityScan),true)
 	ci/coverity.sh
 endif
 
@@ -22,3 +22,6 @@ nuget-pack:
 
 nuget-push:
     dotnet nuget push Consul.Configuration.Provider.*.nupkg -k $(nugetApiKey) -s https://api.nuget.org/v3/index.json
+
+tag:
+	@echo "TAG VERSION:" $(tagNumber)

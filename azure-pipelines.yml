@@ -3,6 +3,7 @@ resources:
 
 trigger:
 - master
+- maint/*
 
 variables:
   major: 0
@@ -18,4 +19,5 @@ jobs:
   steps:
   - template: ci/steps.yml
     parameters:
-      version: '${major}.${minor}.${patch}.${rev}'
+      versionNumber: '${major}.${minor}.${patch}'
+      tagVersion: '${major}.${minor}.${patch}.${rev}'

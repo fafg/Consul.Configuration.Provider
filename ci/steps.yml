@@ -5,11 +5,14 @@ steps:
 - script: make test
   displayName: "Test"
 
-- script: make coverity-scan
+- script: make coverityScan=$(coverityScan) coverityToken=$(coverityToken) coverity-scan
   displayName: Coverity scan
 
-- script: sudo apt install nuget && make nuget-pack versionNumber=$(version)
+- script: sudo apt install nuget && make nuget-pack versionNumber=${{ parameters.versionNumber }}
   displayName: Nuget Pack 
 
 - script: make nugetApiKey=$(nugetApiKey) nuget-push
   displayName: Nuget Push
+
+- script: make tag tagNumber=${{ parameters.tagNumber }}
+  displayName: Tagging
