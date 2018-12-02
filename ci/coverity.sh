@@ -31,7 +31,7 @@ COV_BUILD="$TOOL_BASE/cov-analysis/bin/cov-build"
 
 COVERITY_UNSUPPORTED=1 \
 	$COV_BUILD --dir cov-int \
-	dotnet build -c Release ../Consul.Configuration.Provider.sln
+	dotnet build -c Release Consul.Configuration.Provider.sln
 
 # Upload results
 tar czf Consul.Configuration.Provider.tgz cov-int
