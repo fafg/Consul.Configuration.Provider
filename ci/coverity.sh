@@ -6,7 +6,6 @@ set -e
  [ -z "$coverityToken" ] && echo "Need to set a coverity token" && exit 1
 
 SOURCE_DIR="../"
-BUILD_DIR=$(pwd)
 
 case $(uname -m) in
 	i?86)				BITS=32 ;;
@@ -28,19 +27,14 @@ if [ ! -d "$TOOL_BASE" ]; then
 	ln -s "$TOOL_DIR" "$TOOL_BASE"/cov-analysis
 fi
 
-cp "${SOURCE_DIR}/script/user_nodefs.h" "$TOOL_BASE"/cov-analysis/config/user_nodefs.h
-
 COV_BUILD="$TOOL_BASE/cov-analysis/bin/cov-build"
-
-# Configure and build
-cmake ${SOURCE_DIR}
 
 COVERITY_UNSUPPORTED=1 \
 	$COV_BUILD --dir cov-int \
-	cmake --build .
+	dotnet build -c Release ../Consul.Configuration.Provider.sln
 
 # Upload results
-tar czf libgit2.tgz cov-int
+tar czf Consul.Configuration.Provider.tgz cov-int
 SHA=$(cd ${SOURCE_DIR} && git rev-parse --short HEAD)
 
 HTML="$(curl \
