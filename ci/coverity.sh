@@ -28,6 +28,9 @@ if [ ! -d "$TOOL_BASE" ]; then
 fi
 
 COV_BUILD="$TOOL_BASE/cov-analysis/bin/cov-build"
+COV_CONFIGURE="$TOOL_BASE/cov-analysis/bin/cov-configure --cs"
+
+$COV_CONFIGURE
 
 COVERITY_UNSUPPORTED=1 \
 	$COV_BUILD --dir cov-int \

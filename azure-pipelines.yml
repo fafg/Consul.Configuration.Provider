@@ -19,5 +19,5 @@ jobs:
   steps:
   - template: ci/steps.yml
     parameters:
-      versionNumber: '${major}.${minor}.${patch}'
-      tagVersion: '${major}.${minor}.${patch}.${rev}'
+      versionNumber: '$(major).$(minor).$(patch)'
+      tagVersion: '$(major).$(minor).$(patch).$(rev)'

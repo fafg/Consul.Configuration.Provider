@@ -24,4 +24,4 @@ nuget-push:
     dotnet nuget push Consul.Configuration.Provider.*.nupkg -k $(nugetApiKey) -s https://api.nuget.org/v3/index.json
 
 tag:
-	@echo "TAG VERSION:" $(tagNumber)
+	@echo "TAG VERSION:" $(tagVersion)

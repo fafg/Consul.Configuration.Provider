@@ -14,5 +14,5 @@ steps:
 - script: make nugetApiKey=$(nugetApiKey) nuget-push
   displayName: Nuget Push
 
-- script: make tag tagNumber=${{ parameters.tagNumber }}
+- script: make tag tagVersion=${{ parameters.tagVersion }}
   displayName: Tagging
