@@ -5,11 +5,11 @@ steps:
 - script: make test
   displayName: "Test"
 
-- script: make version
-  displayName: Versioning
+- script: make coverity-scan
+  displayName: Coverity scan
 
-- script: sudo apt install nuget && make nuget-pack
-  displayName: Nuget Pack
+- script: sudo apt install nuget && make nuget-pack versionNumber=$(version)
+  displayName: Nuget Pack 
 
 - script: make nugetApiKey=$(nugetApiKey) nuget-push
   displayName: Nuget Push
