@@ -18,10 +18,13 @@ ifeq ($(coverityScan),true)
 endif
 
 nuget-pack:
-	nuget pack src/Consul.Configuration.Provider/Consul.Configuration.Provider.csproj -Version $(versionNumber)
+	nuget pack src/Consul.Configuration.Provider/Consul.Configuration.Provider.csproj -Version $(versionNumber) -Properties Configuration=Release
 
 nuget-push:
-    dotnet nuget push Consul.Configuration.Provider.*.nupkg -k $(nugetApiKey) -s https://api.nuget.org/v3/index.json
+ifeq ($(pushNuget),true)
+	find . -iname Consul.Configuration.Provider.*.nupkg -type f | xargs -I package \
+    dotnet nuget push package -k $(nugetApiKey) -s https://api.nuget.org/v3/index.json
+endif
 
 tag:
 	@echo "TAG VERSION:" $(tagVersion)

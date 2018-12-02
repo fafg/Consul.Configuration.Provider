@@ -11,7 +11,7 @@ steps:
 - script: sudo apt install nuget && make nuget-pack versionNumber=${{ parameters.versionNumber }}
   displayName: Nuget Pack 
 
-- script: make nugetApiKey=$(nugetApiKey) nuget-push
+- script: make nugetApiKey=$(nugetApiKey) pushNuget=$(pushNuget) nuget-push
   displayName: Nuget Push
 
 - script: make tag tagVersion=${{ parameters.tagVersion }}
