@@ -11,7 +11,8 @@ case $(uname -m) in
 	i?86)				BITS=32 ;;
 	amd64|x86_64)	BITS=64 ;;
 esac
-SCAN_TOOL=https://scan.coverity.com/download/linux${BITS}
+
+SCAN_TOOL=https://scan.coverity.com/download/csharp/linux${BITS}
 TOOL_BASE=$(pwd)/ci/_coverity-scan
 
 # Install coverity tools
