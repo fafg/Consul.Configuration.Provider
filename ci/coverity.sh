@@ -35,8 +35,9 @@ $COV_CONFIGURE
 
 COVERITY_UNSUPPORTED=1 \
 	$COV_BUILD --dir cov-int \
-	dotnet build -c Release Consul.Configuration.Provider.sln
-
+	dotnet build -c Release src/Consul.Configuration.Provider/Consul.Configuration.Provider.csproj \
+	-o cov-int
+	
 # Upload results
 tar czf Consul.Configuration.Provider.tgz cov-int
 SHA=$(cd ${SOURCE_DIR} && git rev-parse --short HEAD)
